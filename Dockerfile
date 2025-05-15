@@ -6,6 +6,6 @@ RUN apt-get update && apt-get install -y git gcc zlib1g-dev libjpeg-dev libpng-d
 
 RUN git clone https://github.com/CaviarChen/Fog-of-World-Data-Parser /app
 
-RUN sed -i 's|http://127\.0\.0\.1|${DOMAIN}|g' ファイル名
+RUN sed -i 's|http://127\.0\.0\.1|${DOMAIN}|g' /app/main.py
 
 RUN pip install --no-cache-dir -r requirements.txt
