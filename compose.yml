@@ -1,7 +1,10 @@
 services:
   viewer:
     container_name: fogofworld-viewer
-    build: .
+    build:
+      context: .
+      args:
+        - DOMAIN=${DOMAIN}
     volumes:
       - ./data:/data
     ports:
