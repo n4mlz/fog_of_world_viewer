@@ -5,6 +5,7 @@ services:
       context: .
       args:
         - DOMAIN=${DOMAIN}
+        - PORT=${PORT}
     volumes:
       - ./data:/data
     ports:
