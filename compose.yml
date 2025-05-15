@@ -1,0 +1,9 @@
+services:
+  viewer:
+    container_name: fogofworld-viewer
+    build: .
+    volumes:
+      - ./data:/data
+    ports:
+      - "8080:8080"
+    command: ["python", "main.py", "/data"]
