@@ -4,4 +4,5 @@
 .git
 __pycache__
 data
+rclone.conf
 *.py[cod]

@@ -9,6 +9,7 @@ on:
       - .github/workflows/publish-image.yml
       - Dockerfile
       - vendor/fog-of-world-data-parser/**
+  workflow_dispatch:
 
 permissions:
   contents: read
