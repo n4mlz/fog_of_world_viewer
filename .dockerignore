@@ -1,5 +1,7 @@
-.git
+# Exclude local credentials and Dropbox-synced data from image build context.
 .env
 .env.*
+.git
+__pycache__
 data
-rclone.conf
+*.py[cod]
