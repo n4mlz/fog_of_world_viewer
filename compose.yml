@@ -1,12 +1,13 @@
+# This file runs the viewer locally from the synced data directory.
 services:
   viewer:
     container_name: fogofworld-viewer
     build:
       context: .
-      args:
-        - DOMAIN=${DOMAIN}
     volumes:
       - ./data:/data
+    environment:
+      FOG_TILE_BASE_URL: ${FOG_TILE_BASE_URL}
     ports:
       - "8080:8080"
     command: ["python", "main.py", "/data"]
