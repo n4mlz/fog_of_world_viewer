@@ -1,0 +1,39 @@
+name: Publish container image
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+
+      - name: Verify public endpoint configuration
+        env:
+          DOMAIN: ${{ vars.FOG_OF_WORLD_VIEWER_DOMAIN }}
+        run: test -n "$DOMAIN" || { echo 'FOG_OF_WORLD_VIEWER_DOMAIN repository variable is required' >&2; exit 1; }
+
+      - uses: docker/login-action@74a5d142397b4f367a81961eba4e8cd7edddf772
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: docker/build-push-action@263435318d21b8e681c14492fe198d362a7d2c83
+        with:
+          context: .
+          push: true
+          tags: |
+            ghcr.io/n4mlz/fog_of_world_viewer:latest
+            ghcr.io/n4mlz/fog_of_world_viewer:sha-${{ github.sha }}
+          labels: |
+            org.opencontainers.image.source=https://github.com/n4mlz/fog_of_world_viewer
+          build-args: |
+            DOMAIN=${{ vars.FOG_OF_WORLD_VIEWER_DOMAIN }}
