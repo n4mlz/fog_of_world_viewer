@@ -30,5 +30,8 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/n4mlz/fog-of-world-viewer:sha-${{ github.sha }}
-          labels: org.opencontainers.image.source=https://github.com/n4mlz/fog_of_world_viewer
+          tags: |
+            ghcr.io/n4mlz/fog_of_world_viewer:latest
+            ghcr.io/n4mlz/fog_of_world_viewer:sha-${{ github.sha }}
+          labels: |
+            org.opencontainers.image.source=https://github.com/n4mlz/fog_of_world_viewer
